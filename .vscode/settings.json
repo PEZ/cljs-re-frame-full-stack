@@ -1,0 +1,8 @@
+{
+  "calva.prettyPrintingOptions": {
+    "printEngine": "pprint",
+    "enabled": true,
+    "width": 150,
+    "maxLength": 50
+  }
+}
