@@ -15,16 +15,17 @@
     [:div.container
      [:h1 "Welcome"]
      [:p "My first page!"]
-     [:button.btn.btn-outline-primary {:on-click #(rf/dispatch [:wizard/get])}
-      "Query Wizard from Backend"]
-     (when @!wizard [:p.display-1.pt-3 @!wizard])
-     [:div.mt-5
+     [:div.mt-2
       [:button.btn.btn-primary {:on-click #(rf/dispatch [:counter/decrement])}
        "-"]
       [:span.d-inline-block.ms-2.me-2.text-center.fw-bold.fs-2.align-middle {:style {:width "15rem"}}
        (counter/display @!counter)]
       [:button.btn.btn-primary {:on-click #(rf/dispatch [:counter/increment])}
-       "+"]]]))
+       "+"]]
+     [:div.mt-5
+      [:button.btn.btn-outline-primary {:on-click #(rf/dispatch [:wizard/get])}
+       "Query Wizard from Backend"]
+      (when @!wizard [:p.display-1.pt-3 @!wizard])]]))
 
 
 (rf/reg-fx
