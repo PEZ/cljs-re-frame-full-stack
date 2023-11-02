@@ -20,10 +20,18 @@
             [taoensso.timbre :as log])
   (:gen-class))
 
+(defonce !counter (atom 0))
+
 (defn- wizard
   "Route to ping the API. Used in our monitoring system."
   [_]
   (ok {:wizard "🧙‍♂️"}))
+
+(defn- counter [_]
+  (ok {:counter @!counter}))
+
+(defn- save-counter! [req]
+  (ok {:counter (reset! !counter (-> req :body-params :counter))}))
 
 (defn- reveal-information [request]
   (ok {:headers (:headers request)
@@ -34,12 +42,9 @@
     ["" {:name :api/debug
          :get {:handler reveal-information}
          :post {:handler reveal-information}}]]
-   ["/wizard" {:get wizard}]])
-
-
-
-
-
+   ["/wizard" {:get wizard}]
+   ["/counter" {:get counter
+                :post save-counter!}]])
 
 ;; ----------------------------------------------------------------------------
 

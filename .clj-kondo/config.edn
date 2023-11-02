@@ -1,3 +1,4 @@
-{:lint-as {mount.core/defstate clj-kondo.lint-as/def-catch-all}
+{:lint-as {mount.core/defstate clj-kondo.lint-as/def-catch-all
+           reagent.core/with-let clojure.core/let}
  :linters {:single-key-in {:level :warning}
            :unsorted-required-namespaces {:level :warning}}}
