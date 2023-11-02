@@ -30,8 +30,12 @@
 (defn- counter [_]
   (ok {:counter @!counter}))
 
-(defn- save-counter! [req]
-  (ok {:counter (reset! !counter (-> req :body-params :counter))}))
+(defn- save-counter! [request]
+  (ok {:counter (reset! !counter (-> request :body-params :counter))}))
+
+(comment
+  (dissoc request :reitit.core/match :reitit.core/router)
+  :rcf)
 
 (defn- reveal-information [request]
   (ok {:headers (:headers request)
